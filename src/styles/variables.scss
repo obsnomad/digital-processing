@@ -1,0 +1,19 @@
+// Colors
+$color-background: #434343;
+$color-background-dark: darken($color-background, 10);
+$color-text: #e3e3e3;
+$color-border: #737373;
+
+// Font
+$font-family: Avenir, Helvetica, Arial, sans-serif;
+$font-size: 14px;
+$font-size-label: 16px;
+$line-height-label: 24px;
+
+// Geometry
+$padding-default: 12px;
+$width-side-panel: 300px;
+
+// Other
+$border-width: 1px;
+$border-default: $border-width solid $color-border;
