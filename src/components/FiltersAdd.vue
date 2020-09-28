@@ -57,10 +57,12 @@ export default {
     height: $line-height-label;
     font-weight: normal;
     font-size: $font-size;
+    line-height: $line-height;
 }
 
 .addPanel {
     position: absolute;
+    z-index: 10;
     width: $width-side-panel - ($padding-default + $border-width) * 2 + 8px;
     top: $line-height-label + 8px;
     right: -4px;

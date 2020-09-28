@@ -1,14 +1,14 @@
 <template>
     <div class="panel">
         <section>
-            <h2 for="file">Загрузить изображение</h2>
-            <FileInput id="file"/>
+            <h2>Загрузить изображение</h2>
+            <FileInput/>
         </section>
         <section>
             <h2>Изображение</h2>
             <ImagePreview/>
         </section>
-        <section class="lastSection">
+        <section v-if="file" class="lastSection">
             <h2>
                 Фильтры
                 <FiltersAdd/>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 import FileInput from './FileInput.vue'
 import ImagePreview from './ImagePreview.vue'
 import FiltersList from './FiltersList.vue'
@@ -31,9 +33,9 @@ export default {
         FiltersList,
         FiltersAdd,
     },
-    props: {
-        msg: String
-    }
+    computed: mapState([
+        'file',
+    ]),
 }
 </script>
 

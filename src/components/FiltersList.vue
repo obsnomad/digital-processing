@@ -6,17 +6,16 @@
 
 <script>
 import {mapState} from 'vuex'
+
 import FiltersItem from './FiltersItem.vue'
 
 export default {
     components: {
         FiltersItem,
     },
-    computed: {
-        ...mapState([
-            'filters',
-        ]),
-    },
+    computed: mapState([
+        'filters',
+    ]),
 }
 </script>
 
@@ -36,7 +35,7 @@ export default {
     background: lighten($color-background-dark, 5);
 
     & + & {
-       margin-top: 5px;
+        margin-top: 5px;
     }
 }
 </style>

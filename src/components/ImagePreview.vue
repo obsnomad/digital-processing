@@ -11,11 +11,9 @@ export default {
     data: () => ({
         image: null,
     }),
-    computed: {
-        ...mapState([
-            'file',
-        ])
-    },
+    computed: mapState([
+        'file',
+    ]),
     watch: {
         file(file) {
             if (file instanceof File) {

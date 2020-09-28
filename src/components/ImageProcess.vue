@@ -15,25 +15,40 @@ export default {
     mounted() {
         this.context = this.$refs.canvas.getContext('2d')
     },
-    computed: {
-        ...mapState([
-            'file',
-            'filters',
-        ]),
-    },
+    computed: mapState([
+        'file',
+        'filters',
+    ]),
     watch: {
         file(file) {
             if (file instanceof File) {
-                const {context} = this;
-                const image = new Image();
-                image.src = URL.createObjectURL(file)
-                image.onload = () => {
-                    const {naturalWidth, naturalHeight} = image
-                    context.canvas.width = naturalWidth
-                    context.canvas.height = naturalHeight
-                    context.drawImage(image, 0, 0, naturalWidth, naturalHeight)
+                const {context} = this
+                this.image = new Image
+                this.image.src = URL.createObjectURL(file)
+                this.image.onload = () => {
+                    context.canvas.width = this.image.naturalWidth
+                    context.canvas.height = this.image.naturalHeight
+                    this.redrawImage()
+                    this.applyFilters()
                 }
             }
+        },
+        filters: {
+            handler: function () {
+                this.applyFilters()
+            },
+            deep: true,
+        },
+    },
+    methods: {
+        redrawImage() {
+            this.context.drawImage(this.image, 0, 0, this.image.naturalWidth, this.image.naturalHeight)
+        },
+        applyFilters() {
+            this.redrawImage()
+            this.filters.forEach((filter) => {
+                filter.apply(this.context)
+            })
         },
     },
 }
@@ -41,10 +56,10 @@ export default {
 
 <style lang="scss" scoped>
 div {
-    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: calc(100% - #{$width-side-panel});
     padding: $padding-default;
     background: $color-background-dark;
 }
