@@ -1,6 +1,6 @@
 <template>
     <div class="list">
-        <FiltersItem class="listItem" v-for="(filter, key) in filters" :key="key" :filter="filter"/>
+        <FiltersItem class="listItem" v-for="(filter, key) in filters" :key="key" :filterKey="key" :filter="filter"/>
     </div>
 </template>
 

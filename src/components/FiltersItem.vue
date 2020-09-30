@@ -18,6 +18,15 @@
                                 :max="option.limits[1]"
                                 :step="option.step"
                                 tooltip="hover"/>
+                <div v-else-if="option.type === 'radio'">
+                    <label v-for="(value, valueKey, index) in option.values" :key="valueKey">
+                        <input type="radio"
+                               :name="`radio_${filterKey}_${key}`"
+                               :checked="option.value && option.value === valueKey || !option.value && index === 0"
+                               @change="changeValue(valueKey, option)"/>
+                        <span>{{ value }}</span>
+                    </label>
+                </div>
             </li>
         </ul>
     </article>
@@ -35,6 +44,7 @@ export default {
     },
     props: {
         filter: Object,
+        filterKey: [String, Number],
     },
     methods: {
         ...mapMutations([
@@ -128,5 +138,14 @@ button {
 
 .option {
     margin-top: $padding-default / 2;
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+input[type="radio"] {
+    margin: 0 5px 0 0;
 }
 </style>
