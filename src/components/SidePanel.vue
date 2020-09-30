@@ -5,7 +5,7 @@
             <FileInput/>
         </section>
         <section>
-            <h2>Изображение</h2>
+            <h2>Исходное изображение</h2>
             <ImagePreview/>
         </section>
         <section v-if="file" class="lastSection">
@@ -65,7 +65,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: $padding-default;
+        margin-bottom: $padding-default / 2;
         font-size: $font-size-label;
         line-height: $line-height-label;
         font-weight: bold;

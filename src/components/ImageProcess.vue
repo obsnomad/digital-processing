@@ -28,7 +28,6 @@ export default {
                 this.image.onload = () => {
                     context.canvas.width = this.image.naturalWidth
                     context.canvas.height = this.image.naturalHeight
-                    this.redrawImage()
                     this.applyFilters()
                 }
             }
@@ -47,7 +46,9 @@ export default {
         applyFilters() {
             this.redrawImage()
             this.filters.forEach((filter) => {
-                filter.apply(this.context)
+                if (!filter.hidden) {
+                    filter.apply(this.context)
+                }
             })
         },
     },
