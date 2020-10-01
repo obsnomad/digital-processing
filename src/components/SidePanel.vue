@@ -8,6 +8,10 @@
             <h2>Исходное изображение</h2>
             <ImagePreview/>
         </section>
+        <section>
+            <h2>Гистограмма</h2>
+            <Histogramm/>
+        </section>
         <section v-if="file" class="lastSection">
             <h2>
                 Фильтры
@@ -23,6 +27,7 @@ import {mapState} from 'vuex'
 
 import FileInput from './FileInput.vue'
 import ImagePreview from './ImagePreview.vue'
+import Histogramm from './Histogramm.vue'
 import FiltersList from './FiltersList.vue'
 import FiltersAdd from './FiltersAdd.vue'
 
@@ -30,6 +35,7 @@ export default {
     components: {
         FileInput,
         ImagePreview,
+        Histogramm,
         FiltersList,
         FiltersAdd,
     },

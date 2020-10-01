@@ -5,7 +5,9 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
+
+import {getHistogrammData} from '@/helpers'
 
 export default {
     data: () => ({
@@ -40,6 +42,9 @@ export default {
         },
     },
     methods: {
+        ...mapMutations([
+            'setHistogramm',
+        ]),
         redrawImage() {
             this.context.drawImage(this.image, 0, 0, this.image.naturalWidth, this.image.naturalHeight)
         },
@@ -50,6 +55,7 @@ export default {
                     filter.apply(this.context)
                 }
             })
+            this.setHistogramm(getHistogrammData(this.context))
         },
     },
 }
