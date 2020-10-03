@@ -8,7 +8,7 @@
             <h2>Исходное изображение</h2>
             <ImagePreview/>
         </section>
-        <section>
+        <section v-if="file">
             <h2>Гистограмма</h2>
             <Histogramm/>
         </section>
