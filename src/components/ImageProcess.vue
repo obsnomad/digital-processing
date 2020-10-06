@@ -55,7 +55,7 @@ export default {
                     filter.apply(this.context)
                 }
             })
-            this.setHistogramm(getHistogrammData(this.context))
+            this.setHistogramm(getHistogrammData(this.context, true))
         },
     },
 }

@@ -23,12 +23,11 @@ export function getMaxLuminosity(data) {
     return maxLuminosity
 }
 
-export function getHistogrammData(context) {
+export function getHistogrammData(context, percent = false) {
     const {data} = getImageData(context)
-    const getValue = (value) => Math.round(value / maxValue * 100)
+    const getValue = (value) => percent ? Math.round(value / maxValue * 100) : value
 
-    const dataSize = 256
-    const histogrammData = new Array(dataSize)
+    const histogrammData = new Array(256)
     let maxValue = 0
 
     for (let i = 0; i < data.length; i += 4) {
