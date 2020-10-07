@@ -4,6 +4,7 @@ import sharpness from './sharpness.js';
 import equalize from './equalize.js';
 import stepping from './stepping.js';
 import smoothing from './smoothing.js';
+import morphing from './morphing.js';
 
 export default {
     negative,
@@ -12,4 +13,5 @@ export default {
     equalize,
     stepping,
     smoothing,
+    morphing,
 }

@@ -25,6 +25,7 @@ export function getImageMatrix({data, width, height}) {
                 data[index],
                 data[index + 1],
                 data[index + 2],
+                index,
             ]
         }
     }
@@ -61,30 +62,43 @@ export function getHistogrammData(context, percent = false) {
     })
 }
 
-export function getPixelMatrix(matrix, i, j, defaultValue = 0) {
+export function getPixelMatrix(matrix, i, j = 0, defaultValue = 0) {
     const row = Math.floor(i / 4 / matrix[0].length)
     const column = (i / 4) % matrix[0].length
-    return [
-        matrix[row - 1] && matrix[row - 1][column - 1] ? matrix[row - 1][column - 1][j] : defaultValue,
-        matrix[row - 1] && matrix[row - 1][column] ? matrix[row - 1][column][j] : defaultValue,
-        matrix[row - 1] && matrix[row - 1][column + 1] ? matrix[row - 1][column + 1][j] : defaultValue,
-        matrix[row] && matrix[row][column - 1] ? matrix[row][column - 1][j] : defaultValue,
-        matrix[row][column][j],
-        matrix[row] && matrix[row][column + 1] ? matrix[row][column + 1][j] : defaultValue,
-        matrix[row + 1] && matrix[row + 1][column - 1] ? matrix[row + 1][column - 1][j] : defaultValue,
-        matrix[row + 1] && matrix[row + 1][column] ? matrix[row + 1][column][j] : defaultValue,
-        matrix[row + 1] && matrix[row + 1][column + 1] ? matrix[row + 1][column + 1][j] : defaultValue,
-    ]
+    return {
+        values: [
+            matrix[row - 1] && matrix[row - 1][column - 1] ? matrix[row - 1][column - 1][j] : defaultValue,
+            matrix[row - 1] && matrix[row - 1][column] ? matrix[row - 1][column][j] : defaultValue,
+            matrix[row - 1] && matrix[row - 1][column + 1] ? matrix[row - 1][column + 1][j] : defaultValue,
+            matrix[row] && matrix[row][column - 1] ? matrix[row][column - 1][j] : defaultValue,
+            matrix[row][column][j],
+            matrix[row] && matrix[row][column + 1] ? matrix[row][column + 1][j] : defaultValue,
+            matrix[row + 1] && matrix[row + 1][column - 1] ? matrix[row + 1][column - 1][j] : defaultValue,
+            matrix[row + 1] && matrix[row + 1][column] ? matrix[row + 1][column][j] : defaultValue,
+            matrix[row + 1] && matrix[row + 1][column + 1] ? matrix[row + 1][column + 1][j] : defaultValue,
+        ],
+        positions: [
+            matrix[row - 1] && matrix[row - 1][column - 1] ? matrix[row - 1][column - 1][3] : null,
+            matrix[row - 1] && matrix[row - 1][column] ? matrix[row - 1][column][3] : null,
+            matrix[row - 1] && matrix[row - 1][column + 1] ? matrix[row - 1][column + 1][3] : null,
+            matrix[row] && matrix[row][column - 1] ? matrix[row][column - 1][3] : null,
+            matrix[row][column][3],
+            matrix[row] && matrix[row][column + 1] ? matrix[row][column + 1][3] : null,
+            matrix[row + 1] && matrix[row + 1][column - 1] ? matrix[row + 1][column - 1][3] : null,
+            matrix[row + 1] && matrix[row + 1][column] ? matrix[row + 1][column][3] : null,
+            matrix[row + 1] && matrix[row + 1][column + 1] ? matrix[row + 1][column + 1][3] : null,
+        ],
+    }
 }
 
 export function getPixelValue(dataMatrix, i, j, resolveMatrix, defaultValue = 0) {
-    return getPixelMatrix(dataMatrix, i, j, defaultValue).reduce((previousValue, currentValue, index) => {
+    return getPixelMatrix(dataMatrix, i, j, defaultValue).values.reduce((previousValue, currentValue, index) => {
         return previousValue + currentValue * resolveMatrix[index]
     }, 0)
 }
 
 export function getSortedMatrix(dataMatrix, i, j, defaultValue = 0) {
-    return getPixelMatrix(dataMatrix, i, j, defaultValue).sort((a, b) => {
+    return getPixelMatrix(dataMatrix, i, j, defaultValue).values.sort((a, b) => {
         return (+a) - (+b);
     })
 }
