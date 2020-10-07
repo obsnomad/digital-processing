@@ -10,7 +10,7 @@
         </header>
         <ul v-if="filter.options" class="options">
             <li v-for="(option, key) in filter.options" class="option" :key="key">
-                <span v-html="option.name"/>
+                <span v-if="option.type !== 'checkbox'" v-html="option.name"/>
                 <VueRangeSlider v-if="option.type === 'slider'"
                                 :value="option.value"
                                 @input="changeValue($event, option)"
@@ -25,6 +25,15 @@
                                :checked="option.value && option.value === valueKey || !option.value && index === 0"
                                @change="changeValue(valueKey, option)"/>
                         <span>{{ value }}</span>
+                    </label>
+                </div>
+                <div v-else-if="option.type === 'checkbox'">
+                    <label>
+                        <input type="checkbox"
+                               :name="`checkbox_${filterKey}`"
+                               :checked="option.value"
+                               @change="changeValue($event.target.checked, option)"/>
+                        <span>{{ option.name }}</span>
                     </label>
                 </div>
             </li>
