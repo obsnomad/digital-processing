@@ -66,7 +66,7 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% - #{$width-side-panel});
+    width: calc(100% - #{$width-side-panel * 2});
     padding: $padding-default;
     background: $color-background-dark;
 }

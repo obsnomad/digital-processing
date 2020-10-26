@@ -50,7 +50,7 @@ export default {
                 let next = true
                 let originalData = []
                 while (next) {
-                    let result = this.erosion(data, true)
+                    let result = this.erosion(data)
                     if (result) {
                         originalData = result
                     }
