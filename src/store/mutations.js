@@ -1,5 +1,6 @@
 export default {
     setFile: (state, file) => state.file = file,
+    setFiles: (state, files) => state.files = Array.from(files),
     addFilter: (state, filter) => state.filters.push({...filter}),
     setFilter: (state, {filter, fields}) => {
         const index = state.filters.indexOf(filter)

@@ -5,15 +5,27 @@
             <p class="hint">C пересчётом на 32-битный цвет</p>
             <FileInfo/>
         </section>
+        <section>
+            <h2>Загрузить изображения</h2>
+            <MultipleFileInput/>
+        </section>
+        <section>
+            <h2>Информация о файлах</h2>
+            <MultipleFileInfo/>
+        </section>
     </div>
 </template>
 
 <script>
 import FileInfo from './FileInfo.vue'
+import MultipleFileInput from './MultipleFileInput.vue';
+import MultipleFileInfo from './MultipleFileInfo.vue';
 
 export default {
     components: {
         FileInfo,
+        MultipleFileInput,
+        MultipleFileInfo,
     },
     watch: {
         file(file) {
